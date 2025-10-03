@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
-        /* Base styles for a premium white theme */
+        /* Base styles for a premium white theme (from original) */
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #f0f2f5; /* Light background */
@@ -20,17 +20,17 @@
             background-image: radial-gradient(circle at top left, rgba(255, 140, 0, 0.04), transparent 40%); /* Subtle gradient */
             background-attachment: fixed;
         }
-        .dark-bg { background-color: #ffffff; /* White for previously dark backgrounds */ }
+        .dark-bg { background-color: #ffffff; }
         .card-bg { 
-            background-color: #ffffff; /* White cards */
-            border: 1px solid rgba(0, 0, 0, 0.08); /* Subtle border */
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05); /* Lighter shadow */
+            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .card-bg:hover {
-            border-color: rgba(255, 140, 0, 0.2); /* Accent on hover */
+            border-color: rgba(255, 140, 0, 0.2);
             box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.08), 0 0 10px rgba(255, 140, 0, 0.05);
         }
         .text-accent-gradient {
@@ -46,7 +46,7 @@
         .btn:active, .btn-gradient:active, .btn-outline-accent:active { transform: scale(0.96); }
         .btn-gradient { 
             background-image: linear-gradient(to right, #ff8c00, #ffae42);
-            color: #ffffff; /* White text on gradient buttons */
+            color: #ffffff;
             font-weight: bold; 
             box-shadow: 0 4px 15px rgba(255, 140, 0, 0.2);
         }
@@ -61,20 +61,20 @@
         }
         .btn-outline-accent:hover { 
             background-color: #ff8c00; 
-            color: #ffffff; /* White text on accent hover */
+            color: #ffffff;
             box-shadow: 0 4px 15px rgba(255, 140, 0, 0.2);
         }
         .btn-gradient:disabled, .btn-disabled { 
             background-image: none;
-            background-color: #cccccc; /* Light grey for disabled */
+            background-color: #cccccc;
             color: #888888; 
             cursor: not-allowed; 
             box-shadow: none;
         }
         .input-field { 
-            background-color: #e0e0e0; /* Light input fields */
+            background-color: #e0e0e0;
             border: 1px solid #c0c0c0; 
-            color: #333333; /* Dark text in input */
+            color: #333333;
             transition: all 0.2s ease;
         }
         .input-field:focus {
@@ -88,8 +88,8 @@
         .sub-page.active { display: block; animation: fadeIn 0.3s ease-in-out; }
         
         .bottom-nav {
-             border-top: 1px solid rgba(0, 0, 0, 0.08); /* Lighter border for light theme */
-             background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+             border-top: 1px solid rgba(0, 0, 0, 0.08);
+             background-color: rgba(255, 255, 255, 0.8);
              backdrop-filter: blur(10px);
              -webkit-backdrop-filter: blur(10px);
         }
@@ -99,112 +99,84 @@
             bottom: 0;
             left: 0;
             right: 0;
-            max-width: 672px;
+            max-width: 672px; /* Adjusted from 448px to 672px as per original */
             margin: 0 auto;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 12px 16px;
-            background-color: rgba(255, 255, 255, 0.7); /* Lighter bottom nav */
+            padding: 12px 16px; /* Adjusted as per original */
+            background-color: rgba(255, 255, 255, 0.7);
             z-index: 50;
         }
-        .nav-link-premium { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #6b7280; font-size: 0.75rem; font-weight: 500; padding: 8px; border-radius: 12px; transition: all 0.2s ease; position: relative; }
-        .nav-link-premium:hover { color: #333333; }
-        .nav-link-premium.active { color: #ff8c00; }
-        .nav-link-premium:active { transform: scale(0.95); }
-        .nav-link-premium .icon { width: 24px; height: 24px; }
-        .center-home-link { position: relative; transform: translateY(-20px) scale(1.1); background: rgba(255, 140, 0, 0.2); border: 1px solid rgba(255, 140, 0, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4); transition: all 0.3s ease; color: #ffffff; }
-        .center-home-link:hover { transform: translateY(-20px) scale(1.15); box-shadow: 0 6px 30px rgba(255, 140, 0, 0.6); }
-        .center-home-link .icon { width: 32px; height: 32px; color: #fff; }
-        .header { border-bottom: 1px solid rgba(0, 0, 0, 0.08); background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #333333; } /* Lighter header */
+        /* New nav-link for 5-button bottom nav */
+        .nav-link { 
+            display: flex; flex-direction: column; align-items: center; gap: 4px; 
+            color: #6b7280; font-size: 0.75rem; font-weight: 500; padding: 8px; 
+            border-radius: 12px; transition: all 0.2s ease; position: relative; 
+        }
+        .nav-link:hover { color: #333333; }
+        .nav-link.active { color: #ff8c00; }
+        .nav-link:active { transform: scale(0.95); }
+        .nav-link .icon { width: 24px; height: 24px; }
+
+        .header { border-bottom: 1px solid rgba(0, 0, 0, 0.08); background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #333333; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Banner Styles */
-        .banner-wrapper { position: relative; width: 100%; padding-top: 56.25%; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); } /* Lighter shadow */
-        .banner-inner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
-        .slide { min-width: 100%; position: relative; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .dots { position: absolute; bottom: 12px; width: 100%; text-align: center; z-index: 10; }
-        .dot { display: inline-block; height: 8px; width: 8px; margin: 0 4px; background: #bbb; border-radius: 50%; cursor: pointer; transition: background 0.3s; }
-        .dot.active { background: #FF8C00; }
-        #pay-center-telegram-banner { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); z-index: 40; background: linear-gradient(to left, #2a73cc, #1a56a6); color: white; padding: 8px 12px; border-top-left-radius: 12px; border-bottom-left-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.3s ease-in-out; border: 1px solid rgba(255, 255, 255, 0.2); font-weight: 600; }
-        #pay-center-telegram-banner.active { transform: translateY(-50%) translateX(0); }
-
-        /* Loader Styles */
+        /* Loader Styles (from original) */
         #loader .container { --uib-size: 45px; --uib-color: #ff8c00; --uib-speed: 1.75s; --uib-bg-opacity: .2; height: 31.25px; width: 50px; }
         #loader .car { stroke: var(--uib-color); stroke-dasharray: 100; stroke-dashoffset: 0; stroke-linecap: round; stroke-linejoin: round; animation: travel var(--uib-speed) ease-in-out infinite, fade var(--uib-speed) ease-out infinite; }
         #loader .track { stroke-linecap: round; stroke-linejoin: round; stroke: var(--uib-color); opacity: var(--uib-bg-opacity); }
         @keyframes travel { 0% { stroke-dashoffset: 100; } 75% { stroke-dashoffset: 0; } }
         @keyframes fade { 0% { opacity: 0; } 20%, 55% { opacity: 1; } 100% { opacity: 0; } }
         
-        /* Purchase History Card Styles */
-        .purchase-history-card { background-color: #ffffff; /* White cards */ border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); border-radius: 12px; padding: 1rem; transition: all 0.2s ease; }
+        /* Purchase History Card Styles (from original) */
+        .purchase-history-card { background-color: #ffffff; border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); border-radius: 12px; padding: 1rem; transition: all 0.2s ease; }
         .purchase-info-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
-        .purchase-mail-details { background-color: #f9f9f9; /* Light background for details */ border: 1px solid #e0e0e0; padding: 0.75rem; border-radius: 8px; font-size: 0.9rem; color: #333333; word-break: break-all; margin-bottom: 0.75rem; }
+        .purchase-mail-details { background-color: #f9f9f9; border: 1px solid #e0e0e0; padding: 0.75rem; border-radius: 8px; font-size: 0.9rem; color: #333333; word-break: break-all; margin-bottom: 0.75rem; }
         .purchase-date { font-size: 0.75rem; color: #a0a0a0; text-align: right; }
         .purchase-history-card .copy-btn { color: #9ca3af; transition: color 0.2s ease; }
         .purchase-history-card .copy-btn:hover { color: #ff8c00; }
        
-        /* ========== START: NEW WITHDRAW PAGE STYLES ========== */
-         #withdraw-page-new {
+        /* WITHDRAW PAGE STYLES (from original) */
+         #withdraw-page-new, #review-page {
             font-family: 'Noto Sans Bengali', sans-serif;
-            color: #333333; /* Darker text */
+            color: #333333;
          }
-        :root {
-            --primary-color: #f92b7a;
-            --primary-glow: rgba(249, 43, 122, 0.2); /* Lighter glow */
-            --accent-color: #fdd835;
-            --accent-hover: #ffeb3b;
-            --background-gradient: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* Lighter background gradient */
-            --glass-bg: rgba(255, 255, 255, 0.6); /* Lighter glass effect */
-            --glass-border: rgba(0, 0, 0, 0.1); /* Lighter border */
-            --text-light: #333; /* Dark text for light theme */
-            --text-dark: #333;
-            --placeholder-color: #888;
-        }
-        #withdraw-page-new .withdraw-container {
-            background: var(--background-gradient);
-            color: var(--text-light);
-            padding: 20px;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-        #withdraw-page-new #edit-page-container { display: none; }
         #withdraw-page-new .balance-box {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 20px;
             padding: 25px;
             text-align: center;
-            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.08); /* Lighter shadow */
+            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.08);
             margin-bottom: 30px;
             transition: transform 0.3s ease;
         }
         #withdraw-page-new .balance-box:hover { transform: translateY(-5px); }
-        #withdraw-page-new .balance-box p { margin: 5px 0; font-size: 16px; font-weight: 300; color: var(--text-light); opacity: 0.8; }
-        #withdraw-page-new .balance-box h2 { font-size: 42px; color: #333; /* Darker balance amount */ text-shadow: 0px 1px 3px rgba(0,0,0,0.1); margin: 10px 0; font-weight: 700; }
-        #withdraw-page-new .info { font-size: 14px; color: var(--text-light); }
+        #withdraw-page-new .balance-box p { margin: 5px 0; font-size: 16px; font-weight: 300; color: #333; opacity: 0.8; }
+        #withdraw-page-new .balance-box h2 { font-size: 42px; color: #333; text-shadow: 0px 1px 3px rgba(0,0,0,0.1); margin: 10px 0; font-weight: 700; }
+        #withdraw-page-new .info { font-size: 14px; color: #333; }
         #withdraw-page-new .withdraw-section h3 { color: #333; margin-bottom: 15px; font-size: 20px; font-weight: 500; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
-        #withdraw-page-new .all-withdraw-box { background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; margin-bottom: 25px; color: #333; /* Dark text */ font-size: 15px; line-height: 1.6em; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s ease; }
+        #withdraw-page-new .all-withdraw-box { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; margin-bottom: 25px; color: #333; font-size: 15px; line-height: 1.6em; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s ease; }
         #withdraw-page-new .all-withdraw-box .text-content { flex-grow: 1; margin-left: 15px; }
-        #withdraw-page-new .all-btn { background-color: var(--accent-color); color: var(--text-dark); border: none; border-radius: 10px; padding: 12px 25px; font-weight: bold; cursor: pointer; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(253, 216, 53, 0.2); }
-        #withdraw-page-new .all-btn:hover:not(:disabled) { background-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(253, 216, 53, 0.3); }
+        #withdraw-page-new .all-btn { background-color: #fdd835; color: #333; border: none; border-radius: 10px; padding: 12px 25px; font-weight: bold; cursor: pointer; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(253, 216, 53, 0.2); }
+        #withdraw-page-new .all-btn:hover:not(:disabled) { background-color: #ffeb3b; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(253, 216, 53, 0.3); }
         #withdraw-page-new .all-btn:disabled { background-color: rgba(160, 160, 160, 0.3); color: rgba(51, 51, 51, 0.5); cursor: not-allowed; box-shadow: none; }
         #withdraw-page-new .options { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
-        #withdraw-page-new .option { background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px 15px; text-align: left; cursor: pointer; transition: all 0.3s ease; }
-        #withdraw-page-new .option:hover:not(.disabled) { transform: translateY(-5px); box-shadow: 0 0 15px var(--primary-glow); border-color: var(--primary-color); }
+        #withdraw-page-new .option { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px 15px; text-align: left; cursor: pointer; transition: all 0.3s ease; }
+        #withdraw-page-new .option:hover:not(.disabled) { transform: translateY(-5px); box-shadow: 0 0 15px rgba(249, 43, 122, 0.2); border-color: #f92b7a; }
         #withdraw-page-new .option.disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(80%); }
-        #withdraw-page-new .option.selected { border-color: var(--primary-color); box-shadow: 0 0 20px var(--primary-glow); background: rgba(255, 255, 255, 0.8); } /* Lighter selected option */
-        #withdraw-page-new .option .amount { font-size: 24px; font-weight: 700; color: #333; margin-bottom: 8px; } /* Darker amount text */
-        #withdraw-page-new .option p { margin: 2px 0; font-size: 14px; color: var(--text-light); opacity: 0.9; font-weight: 300; }
-        #withdraw-page-new .account-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 15px 20px; margin: 30px 0; display: flex; justify-content: space-between; align-items: center; color: #333; font-weight: 500; } /* Darker text */
-        #withdraw-page-new .account-box a { font-size: 15px; color: var(--accent-color); cursor: pointer; text-decoration: none; font-weight: bold; transition: color 0.2s; }
-        #withdraw-page-new .account-box a:hover { color: var(--accent-hover); }
-        #withdraw-page-new .withdraw-btn { width: 100%; padding: 16px; border: none; border-radius: 15px; background: var(--primary-color); color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 20px var(--primary-glow); }
-        #withdraw-page-new .withdraw-btn:hover:not(:disabled) { background: #e01a69; transform: translateY(-3px); box-shadow: 0 8px 25px var(--primary-glow); }
-        #withdraw-page-new .withdraw-btn:disabled { background-color: rgba(249, 43, 122, 0.3); cursor: not-allowed; box-shadow: none; } /* Lighter disabled button */
-        #withdraw-page-new #edit-page-container { background-color: #f4f7f6; min-height: 100vh; color: var(--text-dark); }
+        #withdraw-page-new .option.selected { border-color: #f92b7a; box-shadow: 0 0 20px rgba(249, 43, 122, 0.2); background: rgba(255, 255, 255, 0.8); }
+        #withdraw-page-new .option .amount { font-size: 24px; font-weight: 700; color: #333; margin-bottom: 8px; }
+        #withdraw-page-new .option p { margin: 2px 0; font-size: 14px; color: #333; opacity: 0.9; font-weight: 300; }
+        #withdraw-page-new .account-box { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 15px; padding: 15px 20px; margin: 30px 0; display: flex; justify-content: space-between; align-items: center; color: #333; font-weight: 500; }
+        #withdraw-page-new .account-box a { font-size: 15px; color: #fdd835; cursor: pointer; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        #withdraw-page-new .account-box a:hover { color: #ffeb3b; }
+        #withdraw-page-new .withdraw-btn { width: 100%; padding: 16px; border: none; border-radius: 15px; background: #f92b7a; color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(249, 43, 122, 0.2); }
+        #withdraw-page-new .withdraw-btn:hover:not(:disabled) { background: #e01a69; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(249, 43, 122, 0.3); }
+        #withdraw-page-new .withdraw-btn:disabled { background-color: rgba(249, 43, 122, 0.3); cursor: not-allowed; box-shadow: none; }
+        #withdraw-page-new #edit-page-container, #review-page { background-color: #f4f7f6; }
         #withdraw-page-new .header { background: linear-gradient(to right, #6dd5ed, #2193b0); color: white; padding: 20px; display: flex; align-items: center; font-size: 18px; font-weight: bold; }
         #withdraw-page-new .header .back-arrow { font-size: 24px; margin-right: 15px; cursor: pointer; transition: transform 0.2s; }
         #withdraw-page-new .header .back-arrow:hover { transform: translateX(-5px); }
@@ -215,37 +187,59 @@
         #withdraw-page-new .form-row label { color: #555; font-weight: 500; }
         #withdraw-page-new .form-row .input-wrapper { display: flex; align-items: center; gap: 8px; color: #777; }
         #withdraw-page-new .form-row input, #withdraw-page-new .form-row .wallet-display { border: none; background: transparent; text-align: right; color: #333; font-size: 16px; font-family: 'Noto Sans Bengali', sans-serif; width: 100%; outline: none; }
-        #withdraw-page-new .form-row input::placeholder { color: var(--placeholder-color); }
-        #withdraw-page-new .form-row .wallet-display.placeholder { color: var(--placeholder-color); }
+        #withdraw-page-new .form-row input::placeholder { color: #888; }
+        #withdraw-page-new .form-row .wallet-display.placeholder { color: #888; }
         #withdraw-page-new .notice { margin-top: 25px; padding: 15px; background-color: #e3f2fd; border-radius: 12px; font-size: 14px; line-height: 1.7; color: #1e88e5; border-left: 5px solid #1e88e5; }
-        #withdraw-page-new .save-btn { width: 100%; padding: 16px; border: none; border-radius: 15px; background: var(--primary-color); color: white; font-size: 18px; font-weight: bold; cursor: pointer; display: block; margin: 30px auto 10px auto; box-shadow: 0 5px 20px var(--primary-glow); transition: all 0.3s ease; }
-        #withdraw-page-new .save-btn:hover { background: #e01a69; transform: translateY(-3px); box-shadow: 0 8px 25px var(--primary-glow); }
-        #withdraw-page-new .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); /* Lighter overlay */ display: none; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(8px); animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        #withdraw-page-new .modal-content { background: white; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Lighter shadow */ animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); color: var(--text-dark); }
+        #withdraw-page-new .save-btn { width: 100%; padding: 16px; border: none; border-radius: 15px; background: #f92b7a; color: white; font-size: 18px; font-weight: bold; cursor: pointer; display: block; margin: 30px auto 10px auto; box-shadow: 0 5px 20px rgba(249, 43, 122, 0.2); transition: all 0.3s ease; }
+        #withdraw-page-new .save-btn:hover { background: #e01a69; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(249, 43, 122, 0.3); }
+        #withdraw-page-new .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: none; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(8px); animation: fadeIn 0.3s ease; }
+        #withdraw-page-new .modal-content { background: white; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); color: #333; }
         @keyframes slideUp { from { transform: translateY(40px) scale(0.98); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
         #withdraw-page-new .modal-content h3 { margin-top: 0; color: #222; font-weight: 700; }
         #withdraw-page-new #bank-select-modal .modal-content { padding: 0; overflow: hidden; }
         #withdraw-page-new #bank-select-modal .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #eee; }
         #withdraw-page-new #bank-select-modal .modal-header h3 { margin: 0; font-size: 18px; }
         #withdraw-page-new #bank-select-modal .close-btn { font-size: 32px; color: #aaa; cursor: pointer; font-weight: 300; transition: transform 0.2s, color 0.2s; }
-        #withdraw-page-new #bank-select-modal .close-btn:hover { transform: rotate(90deg); color: var(--text-dark); }
+        #withdraw-page-new #bank-select-modal .close-btn:hover { transform: rotate(90deg); color: #333; }
         #withdraw-page-new #bank-select-modal .bank-option { padding: 20px; border-bottom: 1px solid #f5f5f5; cursor: pointer; transition: background-color 0.2s; font-size: 16px; }
         #withdraw-page-new #bank-select-modal .bank-option:last-child { border-bottom: none; }
         #withdraw-page-new #bank-select-modal .bank-option:hover { background-color: #f9f9f9; }
         #withdraw-page-new #alert-modal .modal-content { text-align: center; }
         #withdraw-page-new #alert-modal #alert-message { font-size: 17px; color: #444; margin-bottom: 30px; line-height: 1.6; }
-        #withdraw-page-new #alert-modal #alert-ok-btn { width: 100%; padding: 14px; background: var(--primary-color); color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 16px; cursor: pointer; transition: all 0.2s ease; }
+        #withdraw-page-new #alert-modal #alert-ok-btn { width: 100%; padding: 14px; background: #f92b7a; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 16px; cursor: pointer; transition: all 0.2s ease; }
         #withdraw-page-new #alert-modal #alert-ok-btn:hover { background: #e01a69; transform: scale(1.02); }
-        /* ========== END: NEW WITHDRAW PAGE STYLES ========== */
 
+        /* Custom Styles for new home and profile page design */
+        #home-page .balance-card-new, #profile-page .profile-header-new, #profile-page .profile-link-new, #profile-page .account-details-content-new, #home-page .quick-action-btn-new {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        #home-page .balance-card-new { padding: 20px; text-align: center; margin-bottom: 16px; }
+        #home-page .balance-card-new .label { font-size: 14px; color: #666; margin-bottom: 8px; }
+        #home-page .balance-card-new .amount { font-size: 32px; font-weight: 700; color: #333; }
+        #home-page .quick-actions-new { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+        #home-page .quick-action-btn-new { padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-weight: 600; color: #333; transition: transform 0.2s; }
+        #home-page .quick-action-btn-new:hover { transform: translateY(-2px); }
+        #home-page .quick-action-btn-new .icon { width: 32px; height: 32px; }
+        #home-page .quick-action-btn-new.deposit .icon { color: #2ecc71; }
+        #home-page .quick-action-btn-new.withdraw .icon { color: #e74c3c; }
+        #profile-page .profile-header-new { padding: 24px; text-align: center; margin-bottom: 24px; }
+        #profile-page .profile-avatar-new { width: 80px; height: 80px; border-radius: 50%; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #666; margin: 0 auto 16px; border: 3px solid #ff8c00; }
+        #profile-page .profile-name-new { font-size: 24px; font-weight: 700; color: #333; margin-bottom: 4px; }
+        #profile-page .profile-id-new { font-size: 14px; color: #777; }
+        #profile-page .profile-link-new { padding: 18px; display: flex; justify-content: space-between; align-items: center; font-weight: 500; color: #333; transition: transform 0.2s; }
+        #profile-page .profile-link-new:hover { transform: translateY(-2px); }
+        #profile-page .profile-link-new .icon { width: 24px; height: 24px; color: #666; }
+        #profile-page .account-details-content-new { padding: 16px; margin-top: -12px; }
     </style>
 </head>
 <body class="max-w-md mx-auto">
 
-    <div id="loader" class="hidden fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50"> <svg class="container" x="0px" y="0px" viewBox="0 0 50 31.25" height="31.25" width="50" preserveAspectRatio='xMidYMid meet'>
-          <path class="track" stroke-width="4" fill="none" pathlength="100" d="M0.625 21.5 h10.25 l3.75 -5.875 l7.375 15 l9.75 -30 l7.375 20.875 v0 h10.25"/>
-          <path class="car" stroke-width="4" fill="none" pathlength="100" d="M0.625 21.5 h10.25 l3.75 -5.875 l7.375 15 l9.75 -30 l7.375 20.875 v0 h10.25"/>
+    <div id="loader" class="hidden fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50"> 
+        <svg class="container" x="0px" y="0px" viewBox="0 0 50 31.25" height="31.25" width="50" preserveAspectRatio='xMidYMid meet'>
+            <path class="track" stroke-width="4" fill="none" pathlength="100" d="M0.625 21.5 h10.25 l3.75 -5.875 l7.375 15 l9.75 -30 l7.375 20.875 v0 h10.25"/>
+            <path class="car" stroke-width="4" fill="none" pathlength="100" d="M0.625 21.5 h10.25 l3.75 -5.875 l7.375 15 l9.75 -30 l7.375 20.875 v0 h10.25"/>
         </svg>
     </div>
 
@@ -275,28 +269,44 @@
 
         <main class="flex-grow pb-20">
             <div id="home-page" class="p-4 space-y-6 sub-page">
-                <div class="banner-wrapper">
-                    <div class="banner-inner" id="slides">
-                        <div class="slide active"><a href="https://t.me/EXPERTearn_team" target="_blank"><img src="https://i.postimg.cc/zBp8rCX9/Yellow-Orange-Modern-Marketing-Courses-You-Tube-Thumbnail-20250910-185659-0000.png" alt="Slide 1"></a><div class="caption">কম দামে MAIL কিনুন</div></div>
-                        <div class="slide"><a href="https://t.me/EXPERTearn_team" target="_blank"><img src="https://i.postimg.cc/W1syFD8p/Grey-Blue-Illustration-Refer-a-Friend-Instagram-Post-1080-x-720-px-20250917-223749-0000.png" alt="Slide 2"></a><div class="caption">বেশি বেশি রেফার করুন</div></div>
-                        <div class="slide"><a href="https://t.me/EXPERTearn_team" target="_blank"><img src="https://i.postimg.cc/52HsFwvV/Black-and-Orange-Money-You-Tube-Thumbnail-20250917-224706-0000.png" alt="Slide 3"></a><div class="caption">TASKS থেকে ইনকাম করুন</div></div>
-                    </div>
-                    <div class="dots" id="dots"></div>
+                <div class="card-bg balance-card-new">
+                    <p class="label">Current Balance</p>
+                    <h2 id="home-balance-display" class="amount">৳0.00</h2>
+                </div>
+
+                <div class="quick-actions-new">
+                    <a href="#" data-page="pay-page" class="quick-action-btn-new deposit">
+                        <i data-lucide="arrow-down-circle" class="icon"></i>
+                        <span>Deposit</span>
+                    </a>
+                    <a href="#" data-page="withdraw-page-new" class="quick-action-btn-new withdraw">
+                        <i data-lucide="arrow-up-circle" class="icon"></i>
+                        <span>Withdraw</span>
+                    </a>
                 </div>
                 
-                <button id="home-more-features-btn" class="w-full card-bg p-4 rounded-xl flex justify-between items-center text-left text-lg font-semibold">
-                    <span>⚡ More Features</span>
-                    <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400"></i>
-                </button>
-                
-                <section>
-                    <h2 class="text-lg font-semibold px-2 mb-3">Menu</h2>
-                    <div class="space-y-3">
-                         <a href="https://youtube.com/@digitalwork200k?si=o7hpeSc3T6UFMqcN" target="_blank" class="card-bg p-4 rounded-lg flex items-center justify-between"><div class="flex items-center space-x-4"><i data-lucide="youtube" class="w-8 h-8 text-red-500"></i><div><h3 class="font-semibold">Tutorial</h3><p class="text-xs text-gray-600">কিভাবে কাজ করবেন দেখুন</p></div></div><div class="bg-red-600 text-white font-bold px-4 py-2 rounded-lg text-sm btn">CILK NOW</div></a>
-                        <a href="https://whatsapp.com/channel/0029VbC9Toz42Dcj9jBjSL14" target="_blank" class="card-bg p-4 rounded-lg flex items-center justify-between"><div class="flex items-center space-x-4"><i data-lucide="send" class="w-8 h-8 text-sky-500"></i><div><h3 class="font-semibold">Join Telegram</h3><p class="text-xs text-gray-600">Join and get updates</p></div></div><div class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg text-sm btn">CILK NOW</div></a>
-                        <a href="https://www.facebook.com/share/1BWYyshTa9/" target="_blank" class="card-bg p-4 rounded-lg flex items-center justify-between"><div class="flex items-center space-x-4"><i data-lucide="headset" class="w-8 h-8 text-green-400"></i><div><h3 class="font-semibold">Support Team</h3><p class="text-xs text-gray-600">Ready to support</p></div></div><div class="bg-green-600 text-white font-bold px-4 py-2 rounded-lg text-sm btn">CILK NOW</div></a>
+                <a href="https://whatsapp.com/channel/0029VbC9Toz42Dcj9jBjSL14" target="_blank" class="card-bg p-4 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <i data-lucide="send" class="w-8 h-8 text-sky-500"></i>
+                        <div>
+                            <h3 class="font-semibold">Join Telegram</h3>
+                            <p class="text-xs text-gray-600">Join and get updates</p>
+                        </div>
                     </div>
-                </section>
+                    <div class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg text-sm btn">JOIN</div>
+                </a>
+
+                <a href="https://www.facebook.com/share/1BWYyshTa9/" target="_blank" class="card-bg p-4 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <i data-lucide="headset" class="w-8 h-8 text-green-400"></i>
+                        <div>
+                            <h3 class="font-semibold">Support Team</h3>
+                            <p class="text-xs text-gray-600">Ready to support</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-600 text-white font-bold px-4 py-2 rounded-lg text-sm btn">CHAT</div>
+                </a>
+
             </div>
             
             <div id="pay-page" class="p-4 space-y-6 sub-page">
@@ -335,50 +345,32 @@
             </div>
 
             <div id="profile-page" class="p-4 space-y-6 sub-page">
-                <div class="card-bg p-6 rounded-2xl flex flex-col items-center text-center">
-                    <div class="relative mb-4">
-                        <img id="profile-pic" class="w-24 h-24 rounded-full border-2 border-[#ff8c00] object-cover hidden" src="" alt="Profile Picture">
-                        <div id="profile-initials-avatar" class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center border-2 border-[#ff8c00]"><span id="profile-initials" class="text-3xl font-bold text-gray-700"></span></div>
-                    </div>
-                    <h3 id="profile-name" class="text-2xl font-bold">Loading...</h3>
-                    <p id="profile-username" class="text-gray-600">@username</p>
-                    <p id="profile-id" class="text-sm text-gray-500 mt-2">ID: 123456</p>
+                <div class="card-bg profile-header-new">
+                    <div id="profile-initials-avatar" class="profile-avatar-new"><span id="profile-initials">S</span></div>
+                    <h3 id="profile-name" class="profile-name-new">SAIDUL</h3>
+                    <p id="profile-username" class="text-gray-600">Not connected via Telegram</p>
+                    <p id="profile-id" class="profile-id-new">User UID: 0p9nCNCo8x...</p>
                 </div>
 
                 <div class="space-y-3">
-                    <button id="more-features-btn" class="w-full card-bg p-4 rounded-xl flex justify-between items-center text-left text-lg font-semibold">
-                        <span>⚡ More Features</span>
+                    <button id="more-features-btn" class="w-full profile-link-new">
+                        <span class="flex items-center space-x-3"><i data-lucide="zap" class="icon"></i> ⚡ More Features</span>
                         <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400"></i>
                     </button>
-                    <button id="toggle-account-details-btn" class="w-full card-bg p-4 rounded-xl flex justify-between items-center text-left text-lg font-semibold">
-                        <span>ACCOUNT DETAILS</span>
+                    <button id="toggle-account-details-btn" class="w-full profile-link-new">
+                        <span class="flex items-center space-x-3"><i data-lucide="user-cog" class="icon"></i> ACCOUNT DETAILS</span>
                         <i id="account-details-chevron" data-lucide="chevron-down" class="w-6 h-6 text-gray-400 transition-transform duration-300"></i>
                     </button>
-                    <div id="account-details-content" class="hidden card-bg p-6 rounded-xl space-y-4">
+                    <div id="account-details-content" class="hidden account-details-content-new space-y-4">
                         <div class="flex items-center space-x-3"><i data-lucide="mail" class="w-5 h-5 text-gray-600"></i><div><p class="text-xs text-gray-600">Email Address</p><p id="profile-email" class="font-semibold text-gray-800">loading...</p></div></div>
                         <div class="flex items-center space-x-3"><i data-lucide="key-round" class="w-5 h-5 text-gray-600"></i><div><p class="text-xs text-gray-600">Password</p><p class="font-semibold text-gray-800">••••••••••</p></div></div>
                         <button id="change-password-btn" class="w-full p-2 mt-4 rounded-lg btn-outline-accent">Change Password</button>
                     </div>
 
-                    <a href="https://t.me/earn_Supportbot" target="_blank" class="w-full card-bg p-4 rounded-xl flex justify-between items-center text-left text-lg font-semibold">
-                        <span>CONTACT</span>
+                    <a href="https://t.me/earn_Supportbot" target="_blank" class="w-full profile-link-new">
+                        <span class="flex items-center space-x-3"><i data-lucide="message-square" class="icon"></i> CONTACT</span>
                         <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-400"></i>
                     </a>
-                </div>
-                
-                <div class="text-center pt-6">
-                     <div class="flex justify-center items-center space-x-5 mb-4">
-                        <a href="#" target="_blank" class="bg-gray-100 p-3 rounded-full hover:bg-gray-200 transition-all duration-200">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-800"><path d="M16 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"></path><path d="M12 2v10"></path><path d="M14.5 6.5a4 4 0 1 1-5 0"></path><path d="M12 12v10a6 6 0 0 0 6-6 6 6 0 0 0-6-6"></path></svg>
-                        </a>
-                        <a href="https://youtu.be/ajjEcCY4qOg?si=axyWRgZ7bt3Im_la" target="_blank" class="bg-gray-100 p-3 rounded-full hover:bg-gray-200 transition-all duration-200">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-800"><path d="M2.5 17a24.12 24.12 0 0 1 0-10C2.5 6 7.5 4 12 4s9.5 2 9.5 3-2.5 4-2.5 4.5 2.5 2 2.5 2.5c0 .5-4.5 1.5-9.5 1.5S2.5 17.5 2.5 17z"></path><path d="m10 8 4 4-4 4"></path></svg>
-                        </a>
-                        <a href="https://t.me/Life_Work_BD/259" target="_blank" class="bg-gray-100 p-3 rounded-full hover:bg-gray-200 transition-all duration-200">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-800"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
-                        </a>
-                    </div>
-                    <p class="text-center text-gray-500 text-sm">Developed by <a href="https://t.me/SAIDULEP" target="_blank" class="font-semibold text-[#ff8c00] hover:underline">SAIDUL</a></p>
                 </div>
             </div>
 
@@ -515,11 +507,291 @@
                 </div>
             </div>
 
-        </main>
+            <div id="refer-page" class="p-4 space-y-6 sub-page">
+                <h2 class="text-xl font-bold text-center">Refer & Earn</h2>
+
+                <div class="card-bg p-6 rounded-xl space-y-5">
+                    <h3 class="text-lg font-semibold text-center mb-4">Share your referral link</h3>
+                    <div class="flex items-center gap-2 bg-gray-100 p-3 rounded-lg">
+                        <input type="text" id="referral-link-input" class="flex-grow p-1 bg-transparent border-none focus:outline-none font-mono text-sm" readonly value="Loading...">
+                        <button id="copy-referral-link-btn" class="btn p-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                            <i data-lucide="copy" class="w-5 h-5 text-gray-600"></i>
+                        </button>
+                    </div>
+                    <p class="text-center text-gray-500 font-semibold my-4">OR</p>
+                    <button id="share-on-telegram-btn" class="w-full p-3 rounded-lg btn-gradient flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-6 h-6"></i>
+                        Share on Telegram
+                    </button>
+                </div>
+
+                <div class="card-bg p-6 rounded-xl space-y-4">
+                    <h3 class="text-lg font-bold">Your Referrals (<span id="your-referrals-count">0</span>)</h3>
+                    <div id="your-referrals-list" class="space-y-3">
+                        <p class="text-gray-500 text-center">No referrals yet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="review-page" class="p-4 space-y-5 sub-page pb-24">
+                
+<!-- Review 1 -->
+<div class="bg-white rounded-2xl p-4 shadow-md">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">
+            <div>
+                <h3 class="font-bold text-gray-800">রাফি খান</h3>
+                <p class="text-xs text-gray-500">১ দিন আগে</p>
+            </div>
+        </div>
+        <span class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full">ACTIVE</span>
+    </div>
+    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+        <p class="text-sm text-gray-700">" এত দ্রুত পেমেন্ট পাবো ভাবিনি, সত্যিই অসাধারণ অভিজ্ঞতা। "</p>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center gap-1">
+            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+        </div>
+        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+    </div>
+</div>
+
+<!-- Review 2 -->
+<div class="bg-white rounded-2xl p-4 shadow-md mt-6">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">
+            <div>
+                <h3 class="font-bold text-gray-800">সাদিয়া আক্তার</h3>
+                <p class="text-xs text-gray-500">২ দিন আগে</p>
+            </div>
+        </div>
+        <span class="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-semibold px-3 py-1 rounded-full">VERIFIED</span>
+    </div>
+    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+        <p class="text-sm text-gray-700">" ধন্যবাদ ভাই, জীবনের প্রথম ইনকাম এখানে থেকেই করলাম। "</p>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center gap-1">
+            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+        </div>
+        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+    </div>
+</div>
+
+<!-- Review 3 -->
+<div class="bg-white rounded-2xl p-4 shadow-md mt-6">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">
+            <div>
+                <h3 class="font-bold text-gray-800">মোহাম্মদ ইমরান</h3>
+                <p class="text-xs text-gray-500">৩ দিন আগে</p>
+            </div>
+        </div>
+        <span class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full">TOP</span>
+    </div>
+    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+        <p class="text-sm text-gray-700">" রিপোর্ট একদম 100% সঠিক, অনেক সন্তুষ্ট। "</p>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center gap-1">
+            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+        </div>
+        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+    </div>
+</div>
+
+<!-- Review 4 -->
+<div class="bg-white rounded-2xl p-4 shadow-md mt-6">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">
+            <div>
+                <h3 class="font-bold text-gray-800">আরিফুল ইসলাম</h3>
+                <p class="text-xs text-gray-500">৪ দিন আগে</p>
+            </div>
+        </div>
+        <span class="bg-gradient-to-r from-pink-500 to-rose-600 text-white text-xs font-semibold px-3 py-1 rounded-full">PREMIUM</span>
+    </div>
+    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+        <p class="text-sm text-gray-700">" কাজটা একদম সহজ, একাউন্ট মার্কেটিং শিখতে চাইলে এটি বেস্ট প্ল্যাটফর্ম। "</p>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center gap-1">
+            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+        </div>
+        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+    </div>
+</div>
+
+<!-- Review 5 -->
+<div class="bg-white rounded-2xl p-4 shadow-md mt-6">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">
+            <div>
+                <h3 class="font-bold text-gray-800">ফারিহা তাসনিম</h3>
+                <p class="text-xs text-gray-500">৫ দিন আগে</p>
+            </div>
+        </div>
+        <span class="bg-gradient-to-r from-yellow-500 to-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full">NEW</span>
+    </div>
+    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+        <p class="text-sm text-gray-700">" খুবই হেল্পফুল, প্রথম ট্রাইতেই কাজ সফল হলো। "</p>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center gap-1">
+            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+        </div>
+        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+    </div>
+</div>
+
+<!-- Review 6 -->
+<div class="bg-white rounded-2xl p-4 shadow-md mt-6">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">
+            <div>
+                <h3 class="font-bold text-gray-800">সোহেল রানা</h3>
+                <p class="text-xs text-gray-500">৬ দিন আগে</p>
+            </div>
+        </div>
+        <span class="bg-gradient-to-r from-cyan-500 to-sky-600 text-white text-xs font-semibold px-3 py-1 rounded-full">FAST</span>
+    </div>
+    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+        <p class="text-sm text-gray-700">" ভাইয়ের সাপোর্ট অসাধারণ, সবসময় সাথে পেয়েছি। "</p>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center gap-1">
+            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+        </div>
+        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+    </div>
+</div>
+
+<!-- Review 7 -->
+<div class="bg-white rounded-2xl p-4 shadow-md mt-6">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">
+            <div>
+                <h3 class="font-bold text-gray-800">নাফিস হাসান</h3>
+                <p class="text-xs text-gray-500">৭ দিন আগে</p>
+            </div>
+        </div>
+        <span class="bg-gradient-to-r from-red-500 to-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full">TRUSTED</span>
+    </div>
+    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+        <p class="text-sm text-gray-700">" সত্যিই বিশ্বাসযোগ্য, আমার একাউন্ট সেল হয়ে গেছে একদিনেই। "</p>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center gap-1">
+            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+        </div>
+        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+    </div>
+</div>
+                <div class="bg-white rounded-2xl p-4 shadow-md">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+<img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h3 class="font-bold text-gray-800">আলী রহমান</h3>
+                                <p class="text-xs text-gray-500">২ দিন আগে</p>
+                            </div>
+                        </div>
+                        <span class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full">ACTIVE</span>
+                    </div>
+
+                    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+                        <p class="text-sm text-gray-700">" পরিবেশ পরিচ্ছন্ন; কর্মীরা বন্ধুত্বপূর্ণ। "</p>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-4">
+                        <div class="flex items-center gap-1">
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                        </div>
+                        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 shadow-md">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+<img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h3 class="font-bold text-gray-800">আলী রহমান</h3>
+                                <p class="text-xs text-gray-500">২ দিন আগে</p>
+                            </div>
+                        </div>
+                        <span class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full">ACTIVE</span>
+                    </div>
+
+                    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+                        <p class="text-sm text-gray-700">" পরিবেশ পরিচ্ছন্ন; কর্মীরা বন্ধুত্বপূর্ণ। "</p>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-4">
+                        <div class="flex items-center gap-1">
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                        </div>
+                        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+                    </div>
+                </div>
+                
+                
+                <div class="bg-white rounded-2xl p-4 shadow-md">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+<img src="https://i.postimg.cc/nzfKWrpf/channels4-profile.jpg" alt="Profile Logo" class="w-12 h-12 rounded-full object-cover">                            
+                        <div>
+                                <h3 class="font-bold text-gray-800">সাবিলা</h3>
+                                <p class="text-xs text-gray-500">১ সপ্তাহ আগে</p>
+                            </div>
+                        </div>
+                        <span class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full">ACTIVE</span>
+                    </div>
+
+                    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+                        <p class="text-sm text-gray-700">" সেবা দ্রুত ছিল; কিছু জায়গায় ভিড় ছিল। "</p>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-4">
+                        <div class="flex items-center gap-1">
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-gray-300"></i>
+                        </div>
+                        <i data-lucide="heart" class="w-6 h-6 text-red-500 fill-current"></i>
+                    </div>
+                </div>
+                
+                <a href="https://t.me/Prince_Kobir_200k" target="_blank" class="fixed bottom-24 right-5 w-16 h-16 rounded-full btn-gradient flex items-center justify-center shadow-lg transform transition-transform hover:scale-110">
+                    <i data-lucide="plus" class="w-8 h-8 text-white"></i>
+                </a>
+            </div>
+            </main>
 
         <nav class="bottom-nav">
-            <a href="#" class="nav-link-premium" data-page="withdraw-page-new"><i data-lucide="banknote" class="icon"></i><span>Withdraw</span></a> <a href="#" class="nav-link-premium center-home-link" data-page="home-page"><i data-lucide="home" class="icon"></i></a>
-            <a href="#" class="nav-link-premium" data-page="profile-page"><i data-lucide="user" class="icon"></i><span>Profile</span></a>
+            <a href="#" class="nav-link" data-page="home-page"><i data-lucide="home" class="icon"></i><span>Home</span></a>
+            <a href="#" class="nav-link" data-page="withdraw-page-new"><i data-lucide="banknote" class="icon"></i><span>Withdraw</span></a>
+            <a href="#" class="nav-link" data-page="refer-page"><i data-lucide="users" class="icon"></i><span>Refer</span></a>
+            <a href="#" class="nav-link" data-page="review-page"><i data-lucide="star" class="icon"></i><span>Review</span></a>
+            <a href="#" class="nav-link" data-page="profile-page"><i data-lucide="user" class="icon"></i><span>Profile</span></a>
         </nav>
 
         <a href="https://t.me/earn_Supportbot" target="_blank" id="pay-center-telegram-banner" class="hidden"><i data-lucide="send"></i><span>Support</span></a>
@@ -580,7 +852,6 @@ const firebaseConfig = {
             } catch (e) { console.warn("Telegram WebApp script failed to initialize."); }
             lucide.createIcons();
             setupEventListeners();
-            setupBanner(); 
             showMainPage('auth-section');
             loader.style.display = 'none';
             onAuthStateChanged(auth, handleAuthStateChange);
@@ -592,7 +863,6 @@ const firebaseConfig = {
                 currentUser = user;
                 await Promise.all([fetchAppConfig(), fetchUserData()]);
                 if (userData.isBlocked) {
-                    // Use the original alert mechanism for critical messages like this
                     document.getElementById('alert-message').innerText = "আপনার অ্যাকাউন্ট ব্লক করা হয়েছে।";
                     document.getElementById('custom-alert').classList.remove('hidden');
                     document.getElementById('alert-ok-btn').onclick = () => document.getElementById('custom-alert').classList.add('hidden');
@@ -615,7 +885,19 @@ const firebaseConfig = {
             if (!currentUser) return;
             const userRef = doc(db, "users", currentUser.uid);
             const userSnap = await getDoc(userRef);
-            if (userSnap.exists()) userData = userSnap.data();
+            if (userSnap.exists()) {
+                userData = userSnap.data();
+                 // Ensure referralCode exists for older users
+                if (!userData.referralCode) {
+                    const newReferralCode = `DW${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+                    await updateDoc(userRef, { referralCode: newReferralCode });
+                    userData.referralCode = newReferralCode;
+                }
+            } else {
+                const referralCode = `DW${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+                userData = { name: currentUser.email.split('@')[0], email: currentUser.email, balance: 0, isBlocked: false, referralCode: referralCode, createdAt: serverTimestamp() };
+                await setDoc(userRef, userData);
+            }
         }
 
         async function fetchAppConfig() {
@@ -628,6 +910,9 @@ const firebaseConfig = {
             if (!userData) return;
             const balance = (userData.balance || 0).toFixed(2);
             document.getElementById('header-balance-display').textContent = `৳${balance}`;
+            // Update home page balance display
+            const homeBalanceDisplay = document.getElementById('home-balance-display');
+            if (homeBalanceDisplay) homeBalanceDisplay.textContent = `৳${balance}`;
         }
 
         function showMainPage(pageId) {
@@ -637,52 +922,69 @@ const firebaseConfig = {
 
         function navigateTo(pageId) {
             document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            document.querySelectorAll('.nav-link-premium').forEach(link => {
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            } else {
+                console.warn(`Page with ID "${pageId}" not found.`);
+                return; // Stop execution if page doesn't exist
+            }
+            
+            // Update active state for new 5-button bottom nav
+            document.querySelectorAll('.bottom-nav .nav-link').forEach(link => {
                 link.classList.toggle('active', link.dataset.page === pageId);
             });
+            // Hide premium banner if not pay-page
             document.getElementById('pay-center-telegram-banner').classList.toggle('active', pageId === 'pay-page');
+
             const pageLoadFunctions = {
                 'pay-page': loadPaymentHistory,
                 'purchase-history-page': loadPurchaseHistory,
                 'profile-page': loadProfilePage,
                 'features-page': loadFeaturesPage,
+                'refer-page': loadReferralPage, // UPDATED
                 'withdraw-page-new': initializeWithdrawPage
             };
             if (pageLoadFunctions[pageId]) pageLoadFunctions[pageId]();
             lucide.createIcons();
         }
-        window.navigateTo = navigateTo;
+        window.navigateTo = navigateTo; // Make it globally accessible for inline onclick handlers
 
         function setupEventListeners() {
-            // document.getElementById('show-signup').addEventListener('click', (e) => { e.preventDefault(); document.getElementById('login-view').classList.add('hidden'); document.getElementById('signup-view').classList.remove('hidden'); }); // Removed signup
-            // document.getElementById('show-login').addEventListener('click', (e) => { e.preventDefault(); document.getElementById('signup-view').classList.add('hidden'); document.getElementById('login-view').classList.remove('hidden'); }); // Removed signup
-            // document.getElementById('signup-btn').addEventListener('click', handleSignup); // Removed signup
             document.getElementById('login-btn').addEventListener('click', handleLogin);
             
-            document.querySelectorAll('.bottom-nav .nav-link-premium').forEach(link => {
-                if (document.getElementById(link.dataset.page)) {
-                    link.addEventListener('click', (e) => { e.preventDefault(); navigateTo(link.dataset.page); });
-                }
+            // New 5-button bottom navigation event listeners
+            document.querySelectorAll('.bottom-nav .nav-link').forEach(link => {
+                link.addEventListener('click', (e) => { e.preventDefault(); navigateTo(link.dataset.page); });
+            });
+            // Home page quick action buttons (Deposit/Withdraw)
+            document.querySelectorAll('#home-page .quick-actions-new a').forEach(link => {
+                link.addEventListener('click', (e) => { e.preventDefault(); navigateTo(link.dataset.page); });
             });
 
             document.getElementById('header-deposit-btn').addEventListener('click', () => navigateTo('pay-page'));
             document.getElementById('deposit-btn').addEventListener('click', handleDepositRequest);
-            document.getElementById('home-more-features-btn').addEventListener('click', () => navigateTo('features-page')); 
+            document.getElementById('more-features-btn').addEventListener('click', () => navigateTo('features-page')); // From Profile Page
             document.getElementById('change-password-btn').addEventListener('click', handleChangePassword);
             document.getElementById('toggle-account-details-btn').addEventListener('click', () => { document.getElementById('account-details-content').classList.toggle('hidden'); document.getElementById('account-details-chevron').classList.toggle('rotate-180'); });
-            document.getElementById('download-history-btn').addEventListener('click', handleDownloadHistory);
-            document.getElementById('deposit-details-btn').addEventListener('click', () => document.getElementById('deposit-details-modal').classList.remove('hidden'));
-            document.getElementById('deposit-details-ok-btn').addEventListener('click', () => document.getElementById('deposit-details-modal').classList.add('hidden'));
             
-            document.getElementById('more-features-btn').addEventListener('click', () => navigateTo('features-page'));
-            document.getElementById('features-deposit-btn').addEventListener('click', () => navigateTo('pay-page'));
-            document.getElementById('features-withdraw-btn-new').addEventListener('click', () => navigateTo('withdraw-page-new'));
-            document.getElementById('features-receive-btn').addEventListener('click', handleReceive);
-            document.getElementById('features-send-btn').addEventListener('click', handleSend);
-        }
+            const downloadHistoryBtn = document.getElementById('download-history-btn');
+            if (downloadHistoryBtn) downloadHistoryBtn.addEventListener('click', handleDownloadHistory);
 
-        // Removed handleSignup function entirely
+            const depositDetailsBtn = document.getElementById('deposit-details-btn');
+            if (depositDetailsBtn) depositDetailsBtn.addEventListener('click', () => document.getElementById('deposit-details-modal').classList.remove('hidden'));
+            const depositDetailsOkBtn = document.getElementById('deposit-details-ok-btn');
+            if (depositDetailsOkBtn) depositDetailsOkBtn.addEventListener('click', () => document.getElementById('deposit-details-modal').classList.add('hidden'));
+            
+            const featuresDepositBtn = document.getElementById('features-deposit-btn');
+            if (featuresDepositBtn) featuresDepositBtn.addEventListener('click', () => navigateTo('pay-page'));
+            const featuresWithdrawBtn = document.getElementById('features-withdraw-btn-new');
+            if (featuresWithdrawBtn) featuresWithdrawBtn.addEventListener('click', () => navigateTo('withdraw-page-new'));
+            const featuresReceiveBtn = document.getElementById('features-receive-btn');
+            if (featuresReceiveBtn) featuresReceiveBtn.addEventListener('click', handleReceive);
+            const featuresSendBtn = document.getElementById('features-send-btn');
+            if (featuresSendBtn) featuresSendBtn.addEventListener('click', handleSend);
+        }
 
         async function handleLogin() {
             const email = document.getElementById('login-email').value;
@@ -696,32 +998,30 @@ const firebaseConfig = {
         
         function loadProfilePage() {
             const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
-            const profilePic = document.getElementById('profile-pic');
-            const avatarDiv = document.getElementById('profile-initials-avatar');
+            const profileInitialsAvatar = document.getElementById('profile-initials-avatar');
+            const profileInitialsSpan = document.getElementById('profile-initials');
+            const profileName = document.getElementById('profile-name');
+            const profileUsername = document.getElementById('profile-username');
+            const profileId = document.getElementById('profile-id');
+            const profileEmail = document.getElementById('profile-email');
+
+            profileInitialsSpan.textContent = '';
+            
             if (tgUser) {
-                if (tgUser.photo_url) {
-                    profilePic.src = tgUser.photo_url;
-                    profilePic.classList.remove('hidden');
-                    avatarDiv.classList.add('hidden');
-                } else {
-                    const initials = (tgUser.first_name?.[0] || '') + (tgUser.last_name?.[0] || '');
-                    document.getElementById('profile-initials').textContent = initials.toUpperCase();
-                    profilePic.classList.add('hidden');
-                    avatarDiv.classList.remove('hidden');
-                }
-                document.getElementById('profile-name').textContent = `${tgUser.first_name} ${tgUser.last_name || ''}`.trim();
-                document.getElementById('profile-username').textContent = tgUser.username ? `@${tgUser.username}` : 'No Telegram Username';
-                document.getElementById('profile-id').textContent = `Telegram ID: ${tgUser.id}`;
+                const initials = (tgUser.first_name?.[0] || '') + (tgUser.last_name?.[0] || '');
+                profileInitialsSpan.textContent = initials.toUpperCase() || 'U'; 
+                profileName.textContent = `${tgUser.first_name} ${tgUser.last_name || ''}`.trim();
+                profileUsername.textContent = tgUser.username ? `@${tgUser.username}` : 'No Telegram Username';
+                profileId.textContent = `Telegram ID: ${tgUser.id}`;
             } else {
-                const initials = userData.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-                document.getElementById('profile-initials').textContent = initials;
-                profilePic.classList.add('hidden');
-                avatarDiv.classList.remove('hidden');
-                document.getElementById('profile-name').textContent = userData.name;
-                document.getElementById('profile-username').textContent = "Not connected via Telegram";
-                document.getElementById('profile-id').textContent = `User UID: ${currentUser.uid.substring(0, 10)}...`;
+                const nameParts = (userData.name || currentUser.email).split(' ');
+                const initials = (nameParts[0]?.[0] || '') + (nameParts[1]?.[0] || '');
+                profileInitialsSpan.textContent = initials.toUpperCase() || 'U';
+                profileName.textContent = userData.name || currentUser.email;
+                profileUsername.textContent = "Not connected via Telegram";
+                profileId.textContent = `User UID: ${currentUser.uid.substring(0, 10)}...`;
             }
-            document.getElementById('profile-email').textContent = userData.email;
+            profileEmail.textContent = userData.email || currentUser.email;
         }
 
         async function handleChangePassword() {
@@ -778,50 +1078,50 @@ const firebaseConfig = {
 
         async function loadPaymentHistory() {
             const historyList = document.getElementById('payment-history-list');
-            historyList.innerHTML = '<p class="text-gray-600">হিস্টি লোড হচ্ছে...</p>'; // Darker text
+            historyList.innerHTML = '<p class="text-gray-600">হিস্টি লোড হচ্ছে...</p>';
             try {
                 const q = query(collection(db, "deposits"), where("userId", "==", currentUser.uid), orderBy("requestedAt", "desc"));
                 const snapshot = await getDocs(q);
-                if (snapshot.empty) return historyList.innerHTML = '<p class="text-gray-600 text-center">কোনো রেকর্ড পাওয়া যায়নি।</p>'; // Darker text
+                if (snapshot.empty) return historyList.innerHTML = '<p class="text-gray-600 text-center">কোনো রেকর্ড পাওয়া যায়নি।</p>';
 
                 historyList.innerHTML = snapshot.docs.map(doc => {
                     const item = doc.data();
                     let statusColor, statusIcon;
                     switch (item.status) {
-                        case 'approved': statusColor = 'text-green-600'; statusIcon = 'check-circle-2'; break; // Darker green
-                        case 'rejected': statusColor = 'text-red-600'; statusIcon = 'x-circle'; break; // Darker red
-                        default: statusColor = 'text-yellow-600'; statusIcon = 'hourglass'; // Darker yellow
+                        case 'approved': statusColor = 'text-green-600'; statusIcon = 'check-circle-2'; break;
+                        case 'rejected': statusColor = 'text-red-600'; statusIcon = 'x-circle'; break;
+                        default: statusColor = 'text-yellow-600'; statusIcon = 'hourglass';
                     }
                     const date = item.requestedAt ? item.requestedAt.toDate().toLocaleDateString('en-GB') : 'N/A';
-                    return `<div class="card-bg p-3 rounded-lg flex items-center justify-between"><div class="flex items-center gap-3"><i data-lucide="${statusIcon}" class="w-6 h-6 ${statusColor}"></i><div><p class="font-semibold">${item.type || 'Deposit'} - ${item.method}</p><p class="text-xs text-gray-600">${date}</p></div><div class="text-right"><p class="font-bold text-lg">৳${item.amount}</p><p class="font-semibold ${statusColor} capitalize text-xs">${item.status}</p></div></div>`;
+                    return `<div class="card-bg p-3 rounded-lg flex items-center justify-between"><div class="flex items-center gap-3"><i data-lucide="${statusIcon}" class="w-6 h-6 ${statusColor}"></i><div><p class="font-semibold">${item.type || 'Deposit'} - ${item.method}</p><p class="text-xs text-gray-600">${date}</p></div></div><div class="text-right"><p class="font-bold text-lg">৳${item.amount}</p><p class="font-semibold ${statusColor} capitalize text-xs">${item.status}</p></div></div>`;
                 }).join('');
                 lucide.createIcons();
             } catch (error) {
-                historyList.innerHTML = '<p class="text-red-600 text-center">হিস্টি লোড করা যায়নি।</p>'; // Darker red
+                historyList.innerHTML = '<p class="text-red-600 text-center">হিস্টি লোড করা যায়নি।</p>';
             }
         }
         
         async function loadPurchaseHistory() {
             const historyListEl = document.getElementById('mail-purchase-history');
-            historyListEl.innerHTML = '<p class="text-center text-gray-600">হিস্টি লোড হচ্ছে...</p>'; // Darker text
+            historyListEl.innerHTML = '<p class="text-center text-gray-600">হিস্টি লোড হচ্ছে...</p>';
             try {
                 const q = query(collection(db, "mail_purchases"), where("userId", "==", currentUser.uid), orderBy("purchasedAt", "desc"));
                 const querySnapshot = await getDocs(q);
                 if(querySnapshot.empty) {
-                    historyListEl.innerHTML = '<p class="text-center text-gray-600">আপনি এখনো কোনো মেইল কিনেননি।</p>'; // Darker text
+                    historyListEl.innerHTML = '<p class="text-center text-gray-600">আপনি এখনো কোনো মেইল কিনেননি।</p>';
                     return;
                 }
                 historyListEl.innerHTML = '';
                 querySnapshot.forEach(doc => {
                     const purchase = doc.data();
                     const date = purchase.purchasedAt.toDate().toLocaleString();
-                    let mailDetailsContent = `<p class="text-gray-800">${purchase.mail}</p>`; // Darker text
-                    if (purchase.password) mailDetailsContent += `<p class="text-gray-800">${purchase.password}</p>`; // Darker text
+                    let mailDetailsContent = `<p class="text-gray-800">${purchase.mail}</p>`;
+                    if (purchase.password) mailDetailsContent += `<p class="text-gray-800">${purchase.password}</p>`;
                     historyListEl.innerHTML += `<div class="purchase-history-card"><div class="purchase-info-header"><p class="font-bold text-lg">${purchase.mailType}</p><button onclick="copyToClipboard('${purchase.mail} ${purchase.password || ''}', this)" class="copy-btn p-1 rounded-full hover:bg-gray-300"><i data-lucide="copy" class="w-4 h-4"></i></button></div><div class="purchase-mail-details">${mailDetailsContent}</div><p class="purchase-date">${date}</p></div>`;
                 });
                 lucide.createIcons();
             } catch(e) {
-                 historyListEl.innerHTML = '<p class="text-center text-red-600">হিস্টি লোড করা যায়নি।</p>'; // Darker red
+                 historyListEl.innerHTML = '<p class="text-center text-red-600">হিস্টি লোড করা যায়নি।</p>';
                  console.error(e);
             }
         }
@@ -855,10 +1155,6 @@ const firebaseConfig = {
         }
         
         function showAlert(message) {
-            // As per user request, the modal is disabled. 
-            // The message is logged to the browser's console for debugging.
-            console.log(`Alert (Suppressed): ${message}`);
-            // Original code to show the modal:
             document.getElementById('custom-alert').classList.remove('hidden');
             document.getElementById('custom-alert').querySelector('#alert-message').innerText = message;
             document.getElementById('custom-alert').querySelector('#alert-ok-btn').onclick = () => document.getElementById('custom-alert').classList.add('hidden');
@@ -868,28 +1164,11 @@ const firebaseConfig = {
             navigator.clipboard.writeText(text.trim()).then(() => {
                 if(element) {
                     const originalContent = element.innerHTML;
-                    element.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-green-600"></i>`; // Darker green
+                    element.innerHTML = `<i data-lucide="check" class="w-5 h-5 text-green-600"></i>`;
                     lucide.createIcons();
                     setTimeout(() => { element.innerHTML = originalContent; lucide.createIcons(); }, 1500);
                 } else showAlert('কপি করা হয়েছে!');
             });
-        }
-
-        function setupBanner() {
-            const slides = document.querySelectorAll('.slide');
-            const slideContainer = document.getElementById('slides');
-            const dotsContainer = document.getElementById('dots');
-            if (slides.length <= 1) return;
-            let index = 0;
-            dotsContainer.innerHTML = Array.from(slides).map((_, i) => `<span class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('');
-            const dots = dotsContainer.querySelectorAll('.dot');
-            function showSlide(i) {
-                index = i; slideContainer.style.transform = `translateX(${-i * 100}%)`;
-                dots.forEach(d => d.classList.remove('active'));
-                dots[i].classList.add('active');
-            }
-            dotsContainer.addEventListener('click', e => { if(e.target.matches('.dot')) showSlide(parseInt(e.target.dataset.index)); });
-            setInterval(() => showSlide((index + 1) % slides.length), 5000);
         }
         
         async function loadFeaturesPage() {
@@ -909,7 +1188,7 @@ const firebaseConfig = {
                 document.getElementById('total-receive-display').textContent = `৳${totalReceive.toFixed(2)}`;
                 const withdrawQuery = query(collection(db, "withdrawals"), where("userId", "==", currentUser.uid), where("status", "==", "approved"));
                 const withdrawSnapshot = await getDocs(withdrawQuery);
-                const totalWithdraw = withdrawSnapshot.docs.reduce((sum, doc) => sum + doc.data().amount, 0); // Fixed sum accumulation
+                const totalWithdraw = withdrawSnapshot.docs.reduce((sum, doc) => sum + doc.data().amount, 0);
                 document.getElementById('total-withdraw-display').textContent = `৳${totalWithdraw.toFixed(2)}`;
                 await loadTransferHistory();
             } catch (error) {
@@ -922,7 +1201,7 @@ const firebaseConfig = {
 
         async function loadTransferHistory() {
             const historyList = document.getElementById('transfer-history-list');
-            historyList.innerHTML = '<p class="text-gray-600 text-center">Loading history...</p>'; // Darker text
+            historyList.innerHTML = '<p class="text-gray-600 text-center">Loading history...</p>';
             const sentQuery = query(collection(db, "transfers"), where("fromId", "==", currentUser.uid), orderBy("timestamp", "desc"));
             const receivedQuery = query(collection(db, "transfers"), where("toId", "==", currentUser.uid), orderBy("timestamp", "desc"));
             const [sentSnapshot, receivedSnapshot] = await Promise.all([getDocs(sentQuery), getDocs(receivedQuery)]);
@@ -930,12 +1209,12 @@ const firebaseConfig = {
             sentSnapshot.forEach(doc => transactions.push({ id: doc.id, ...doc.data() }));
             receivedSnapshot.forEach(doc => transactions.push({ id: doc.id, ...doc.data() }));
             transactions.sort((a, b) => b.timestamp.toMillis() - a.timestamp.toMillis());
-            if (transactions.length === 0) { historyList.innerHTML = '<p class="text-gray-600 text-center">No transfer history found.</p>'; return; } // Darker text
+            if (transactions.length === 0) { historyList.innerHTML = '<p class="text-gray-600 text-center">No transfer history found.</p>'; return; }
             historyList.innerHTML = transactions.map(item => {
                 const isSent = item.fromId === currentUser.uid;
                 const date = item.timestamp.toDate().toLocaleString('en-GB');
                 const sign = isSent ? '-' : '+';
-                const color = isSent ? 'text-red-600' : 'text-green-600'; // Darker colors
+                const color = isSent ? 'text-red-600' : 'text-green-600';
                 const actionText = isSent ? `Sent to ${item.toName}` : `Received from ${item.fromName}`;
                 return `<div class="card-bg p-3 rounded-lg flex items-center justify-between"><div><p class="font-semibold">${actionText}</p><p class="text-xs text-gray-600">${date}</p></div><p class="font-bold text-lg ${color}">${sign}৳${item.amount.toFixed(2)}</p></div>`;
             }).join('');
@@ -984,10 +1263,102 @@ const firebaseConfig = {
                 loader.style.display = 'none';
             }
         }
+        
+        async function loadReferralPage() {
+            if (!userData) return;
+
+            const referralLinkInput = document.getElementById('referral-link-input');
+            const telegramBotUsername = "GMAIL_SHOP_bot";
+            referralLinkInput.value = `https://t.me/${telegramBotUsername}?start=${userData.referralCode}`;
+            
+            document.getElementById('copy-referral-link-btn').onclick = () => {
+                copyToClipboard(referralLinkInput.value, document.getElementById('copy-referral-link-btn'));
+            };
+            document.getElementById('share-on-telegram-btn').onclick = handleShareOnTelegram;
+
+            await loadYourReferrals();
+            await loadTopReferrals();
+            lucide.createIcons();
+        }
+
+        async function loadYourReferrals() {
+            const yourReferralsList = document.getElementById('your-referrals-list');
+            const yourReferralsCount = document.getElementById('your-referrals-count');
+            yourReferralsList.innerHTML = '<p class="text-gray-500 text-center">Loading your referrals...</p>';
+            try {
+                const q = query(collection(db, "users"), where("referredBy", "==", currentUser.uid), orderBy("createdAt", "desc"));
+                const snapshot = await getDocs(q);
+                yourReferralsCount.textContent = snapshot.size;
+                if (snapshot.empty) {
+                    yourReferralsList.innerHTML = '<p class="text-gray-500 text-center">No referrals yet.</p>';
+                    return;
+                }
+                yourReferralsList.innerHTML = snapshot.docs.map(doc => {
+                    const referrer = doc.data();
+                    const statusClass = referrer.isActivated ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
+                    const statusText = referrer.isActivated ? 'Active' : 'Inactive';
+                    return `<div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                                <div>
+                                    <p class="font-semibold text-gray-800">${referrer.name}</p>
+                                    <p class="text-xs text-gray-500">${referrer.email}</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold ${statusClass}">${statusText}</span>
+                            </div>`;
+                }).join('');
+                lucide.createIcons();
+            } catch (error) {
+                console.error("Error loading your referrals:", error);
+                yourReferralsList.innerHTML = '<p class="text-red-500 text-center">Failed to load your referrals.</p>';
+            }
+        }
+
+        async function loadTopReferrals() {
+            const topReferralsList = document.getElementById('top-referrals-list');
+            topReferralsList.innerHTML = '<p class="text-gray-500 text-center">Loading top referrers...</p>';
+            try {
+                const q = query(collection(db, "users"), where("referralCount", ">", 0), orderBy("referralCount", "desc"), limit(5));
+                const snapshot = await getDocs(q);
+                if (snapshot.empty) {
+                    topReferralsList.innerHTML = `<p class="text-gray-500 text-center">Be the first to refer and appear here!</p>`;
+                    return;
+                }
+                topReferralsList.innerHTML = snapshot.docs.map((doc, index) => {
+                    const referrer = doc.data();
+                    return `<div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-lg font-bold text-gray-500">${index + 1}.</span>
+                                    <div>
+                                        <p class="font-semibold text-gray-800">${referrer.name}</p>
+                                        <p class="text-xs text-gray-500">Referral Code: ${referrer.referralCode}</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-800">${referrer.referralCount || 0} Referrals</span>
+                            </div>`;
+                }).join('');
+                lucide.createIcons();
+            } catch (error) {
+                console.error("Error loading top referrals:", error);
+                topReferralsList.innerHTML = '<p class="text-red-500 text-center">Failed to load top referrers.</p>';
+            }
+        }
+
+        function handleShareOnTelegram() {
+            if (!userData) {
+                showAlert("Please login to get your referral link.");
+                return;
+            }
+            const referralLink = document.getElementById('referral-link-input').value;
+            const shareText = `Join DIGITAL WORK and earn money! Use my referral link: ${referralLink}`;
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent(shareText)}`);
+            } else {
+                showAlert("Telegram WebApp not available. Please copy the link manually.");
+            }
+        }
 
         function initializeWithdrawPage() {
             if (withdrawPageInitialized) {
-                updateWithdrawUI(); // Ensure UI is updated if already initialized
+                updateWithdrawUI();
                 return;
             }
 
@@ -1052,7 +1423,7 @@ const firebaseConfig = {
                                 <div class="flex items-center gap-3">
                                     <i data-lucide="${statusIcon}" class="w-5 h-5 ${statusColor}"></i>
                                     <div>
-                                        <p class="font-semibold">${item.walletType} - ৳${item.receivedAmount.toFixed(2)}</p>
+                                        <p class="font-semibold">${item.walletType} - ৳${(item.receivedAmount || 0).toFixed(2)}</p>
                                         <p class="text-xs text-gray-600">${date}</p>
                                     </div>
                                 </div>
